@@ -1,0 +1,110 @@
+position relative: Acomoda un elemento a partir de su propia ubicacion. Los demas elementos no se mueven
+position absolute: Acomoda un elemento a partir de la ubicacion del elemento padre 
+
+minmax();
+clamp();
+
+--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//
+--//--//--//--//--//--//--//--//--//--//--//--// D I S P L A Y :  F L E X
+--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//
+display:flex
+
+flex-direction: Establece la la direccion en la que deben aparecer los elementos ya sea en sentido de fila o columna o a la inversa
+	row|row-reverse|column|column-reverse
+flex-wrap:		Va de juego con flex-direction, par adecirle a css que cree una fila mas cuando los elementos no caben
+	wrap|nowrap|wrap-reverse
+gap:			Espacio entre elementos
+flex-basis: 	(Similar a widht) Define el tamaño inicial de cada caja
+	Ejemplo: 300px
+flex-grow:		Cuanto queremos que un elemento crezca en relacion a las demas previamente declaradas con flex-basis.
+	Ejemplo: flex-grow: 1
+			 flex-grow: 2
+flex-shrink:	Cuanto queremos que un elemento se encoja en relacion a las demas previamente declaradas con flex-basis.
+	Ejemplo: flex-shrink: 1
+
+--//--//--//--//--//--//--//--//--//--//--//--// POSICIONAMIENTO DE LOS ELEMENTOS DENTRO EL CONTENEDOR
+
+justify-content:	Alineado horizontal de los elementos
+	start|end|center|space-between|space-around|space-evenly
+align-items:	Alineado vertical de los elementos
+	start|end|center|space-between|space-around|space-evenly
+align-content:	Cambia el alineado de los elementos cuando ocupan multiples filas
+	start|end|center|space-between|space-around
+align-self:		Posiciona cada elementos individualmente
+	start|center|end
+
+--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//
+--//--//--//--//--//--//--//--//--//--//--//--// D I S P L A Y :  G R I D
+--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//--//
+
+display: grid
+
+--//--//--//--//--//--//--//--//--//--//--//--// CREACION DE LA GRID
+grid-template-columns: Establece el numero y tamaño de columnas a crear
+	50px 300px	- 2 columnas, una de 50 px y otra de 300px
+	1fr 2fr		- 2 columnas, una de 1 fraccion y la otra de 2 fracciones
+	repeat(2, 50px)	- 2 columnas de 50px
+	1fr repeat(2, 50px 100px) 2fr - 4 columnas, 1 de 1 fraccion, una de 50px, otra de 100px y la ultima de 2 fracciones
+	
+grid-template-rows: Establece el numero y tamaño de filas a crear
+	Mismas caracteristicas
+
+--//--//--//--//--//--//--//--//--//--//--//--// DISTRIBUIR EL ESPACIO DE LOS ELEMENTOS
+justify-content:	alineado horizontal de los elementos
+	start|end|center|stretch|space-between|space-around|space-evenly
+	
+align-content:		alindeado vertical de los elementos 	
+	start|end|center|stretch|space-between|space-around|space-evenly	
+
+
+--//--//--//--//--//--//--//--//--//--//--//--// ACOMODAR LOS ELEMENTOS DENTRO DE CADA CELDA
+justify-items:	alineado horizontal de los elementos
+	start|end|center|stretch
+			
+align-items:		alineado vertical de los elementos
+	start|end|center|stretch
+
+justify-self:		alineado horizontal individual de un elementos
+	start|end|center|stretch
+align-self:			alineado vertical individual de un elementos
+	start|end|center|stretch
+    
+--//--//--//--//--//--//--//--//--//--//--//--// PROPIEDADES
+Propiedad Descripción
+grid-column-start Indica en que columna empezará el ítem de la cuadrícula.
+grid-column-end Indica en que columna terminará el ítem de la cuadrícula.
+grid-row-start Indica en que fila empezará el ítem de la cuadrícula.
+grid-row-end Indica en que fila terminará el ítem de la cuadrícula.
+
+grid-column: Funciona con grid-template-column.
+    Si por ejemplo 
+        grid-template-column: auto 1fr auto
+    y entonces hay un contenedor hijo que luce asi
+        grid-column: span 3: Lo va a suceder es que a partir de donde yo coloque el span 3, ese contendor hijo va a ocupar el espacio de 3 columnas
+    y si fuera por ejemplo
+        grid-column: 2 / span 2: Le digo al contenedor hijo que empice en la linea 2 y que ocupa 2 columnas
+    Grid trabaja con lineas, con filas y con columnas, el span hace mencion a cuantas columnas o filas queremos ocupar
+        
+
+grifd-template-areas:
+    'header     header  header  header'
+    'body       body    body    sidebar'
+    'body       body    body    sidebar'
+    'footer     footer  footer  footer'
+    
+grid-area: header
+grid-area: body
+
+grid-auto-flow: Para decirle a css en que orden queremos tener los elementos, en filas o en columnas
+    row|column|row dense| column dense
+
+auto-fill: calcula cuantas columnas o filas es necesario tener dependiendo el espacio disponible.
+           Llena todo el espacio disponible creando nuevas filas o columnas vacias por si se agrega 
+           mas contenido.
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    
+auto-fit: calcula cuantas columnas o filas es necesario tener dependiendo el espacio disponible,
+          Si son pocas columnas, reparte el espacio disponible entre las que quedan.
+          Elimina los espacios vacios y expande los elementos existentes para que ocupen todo el ancho o alto
+          disponible del contenedor.
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
